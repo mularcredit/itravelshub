@@ -19,6 +19,35 @@ const puppeteer = require('puppeteer');
  * @property {string} [city]
  */
 
+// Get Puppeteer config based on environment
+function getPuppeteerConfig() {
+  const isRender = process.env.NODE_ENV === 'production';
+  
+  if (isRender) {
+    // Render/Docker environment
+    console.log('🚀 Running on Render - using system Chrome');
+    return {
+      headless: 'new',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--single-process',
+        '--no-zygote'
+      ],
+      executablePath: '/usr/bin/google-chrome-stable'
+    };
+  } else {
+    // Local development
+    console.log('💻 Running locally - using default Chrome');
+    return {
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    };
+  }
+}
+
 /**
  * Search for hotels using Puppeteer to scrape Booking.com
  * @param {string} location - Destination city or location
@@ -31,13 +60,12 @@ const puppeteer = require('puppeteer');
 async function searchHotels(location, checkIn, checkOut, guests, offset = 0) {
     let browser;
     try {
-        browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
+        // Use environment-specific config
+        const puppeteerConfig = getPuppeteerConfig();
+        browser = await puppeteer.launch(puppeteerConfig);
 
         const page = await browser.newPage();
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
         const url = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(location)}&checkin=${checkIn}&checkout=${checkOut}&group_adults=${guests.adults}&group_children=${guests.children}&no_rooms=${guests.rooms}&selected_currency=USD&lang=en-us&offset=${offset}`;
 
@@ -143,10 +171,9 @@ async function searchHotels(location, checkIn, checkOut, guests, offset = 0) {
 async function scrapeHotelDetails(url) {
     let browser;
     try {
-        browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
+        // Use environment-specific config
+        const puppeteerConfig = getPuppeteerConfig();
+        browser = await puppeteer.launch(puppeteerConfig);
 
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 1080 });
