@@ -1,6 +1,28 @@
 const puppeteer = require('puppeteer');
 
 /**
+ * Get Puppeteer configuration based on environment
+ */
+function getPuppeteerConfig() {
+  const isRender = process.env.NODE_ENV === 'production';
+  
+  if (isRender) {
+    console.log('🚀 Render environment - using system Chrome');
+    return {
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      executablePath: '/usr/bin/google-chrome-stable'
+    };
+  } else {
+    console.log('💻 Local environment - using default Puppeteer');
+    return {
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    };
+  }
+}
+
+/**
  * @typedef {Object} GuestConfig
  * @property {number} adults
  * @property {number} children
@@ -19,35 +41,6 @@ const puppeteer = require('puppeteer');
  * @property {string} [city]
  */
 
-// Get Puppeteer config based on environment
-function getPuppeteerConfig() {
-  const isRender = process.env.NODE_ENV === 'production';
-  
-  if (isRender) {
-    // Render/Docker environment
-    console.log('🚀 Running on Render - using system Chrome');
-    return {
-      headless: 'new',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-        '--single-process',
-        '--no-zygote'
-      ],
-      executablePath: '/usr/bin/google-chrome-stable'
-    };
-  } else {
-    // Local development
-    console.log('💻 Running locally - using default Chrome');
-    return {
-      headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    };
-  }
-}
-
 /**
  * Search for hotels using Puppeteer to scrape Booking.com
  * @param {string} location - Destination city or location
@@ -62,20 +55,58 @@ async function searchHotels(location, checkIn, checkOut, guests, offset = 0) {
     try {
         // Use environment-specific config
         const puppeteerConfig = getPuppeteerConfig();
+        console.log('Launching browser with config:', puppeteerConfig.args);
+        
         browser = await puppeteer.launch(puppeteerConfig);
 
         const page = await browser.newPage();
+        
+        // Set realistic user agent and headers
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+        
+        // Add stealth headers
+        await page.setExtraHTTPHeaders({
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Upgrade-Insecure-Requests': '1'
+        });
 
         const url = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(location)}&checkin=${checkIn}&checkout=${checkOut}&group_adults=${guests.adults}&group_children=${guests.children}&no_rooms=${guests.rooms}&selected_currency=USD&lang=en-us&offset=${offset}`;
 
         console.log(`Navigating to: ${url}`);
-        await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
+        
+        // Go to page with longer timeout for Render
+        await page.goto(url, { 
+            waitUntil: 'domcontentloaded', 
+            timeout: process.env.NODE_ENV === 'production' ? 90000 : 60000 
+        });
 
-        try {
-            await page.waitForSelector('[data-testid="property-card"]', { timeout: 15000 });
-        } catch (e) {
-            console.log('Timeout waiting for selector, checking simple page load...');
+        // Check if we're on the right page
+        const currentUrl = await page.url();
+        console.log('Current URL after navigation:', currentUrl);
+        
+        // Wait for content with multiple selector options
+        const selectors = [
+            '[data-testid="property-card"]',
+            '.sr_property_block',
+            '.sr-item'
+        ];
+        
+        let cardsFound = false;
+        for (const selector of selectors) {
+            try {
+                await page.waitForSelector(selector, { timeout: 10000 });
+                cardsFound = true;
+                console.log(`Found elements with selector: ${selector}`);
+                break;
+            } catch (e) {
+                // Continue to next selector
+            }
+        }
+        
+        if (!cardsFound) {
+            console.log('No hotel cards found with any selector');
+            return [];
         }
 
         const hotels = await page.evaluate(() => {
@@ -142,7 +173,7 @@ async function searchHotels(location, checkIn, checkOut, guests, offset = 0) {
         return hotels;
 
     } catch (error) {
-        console.error('Scraping failed:', error);
+        console.error('Scraping failed:', error.message);
         return [];
     } finally {
         if (browser) await browser.close();
@@ -171,7 +202,6 @@ async function searchHotels(location, checkIn, checkOut, guests, offset = 0) {
 async function scrapeHotelDetails(url) {
     let browser;
     try {
-        // Use environment-specific config
         const puppeteerConfig = getPuppeteerConfig();
         browser = await puppeteer.launch(puppeteerConfig);
 
