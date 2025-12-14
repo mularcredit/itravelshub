@@ -1,0 +1,7 @@
+/* ONLY fix autocomplete dropdown horizontal scroll */
+/* DO NOT touch anything else */
+
+/* Remove horizontal scroll from autocomplete dropdown only */
+.airport-autocomplete-dropdown {
+    overflow-x: hidden !important;
+}

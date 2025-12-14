@@ -1,0 +1,35 @@
+/* Hide ugly scrollbars and make them invisible */
+.airport-dropdown::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* For Firefox - hide scrollbar */
+.airport-dropdown {
+    scrollbar-width: none;
+}
+
+/* For IE/Edge */
+.airport-dropdown {
+    -ms-overflow-style: none;
+}
+
+/* Ensure calendar appears above everything */
+.react-datepicker-popper {
+    z-index: 99999 !important;
+}
+
+.react-datepicker__portal {
+    z-index: 99999 !important;
+}
+
+.modern-calendar {
+    z-index: 99999 !important;
+}
+
+/* Fix passenger dropdown button alignment */
+.passenger-dropdown button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}

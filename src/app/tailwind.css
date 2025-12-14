@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home2-gradient-bg {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+}
+
+.home2-after-hero-wrapper {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+}
+
+.home2-about-section.home2-gradient-bg,
+.slider-and-tab-section.home2-gradient-bg,
+.feature-card-section.home2-gradient-bg,
+.home2-testimonial-section.home2-gradient-bg,
+.teams-section.home2-gradient-bg,
+.banner5-section.home2-gradient-bg,
+.home2-blog-section.home2-gradient-bg,
+.banner6-section.home2-gradient-bg {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+}
+
+/* Text color updates for dark gradient background - only section titles and direct text */
+.home2-gradient-bg .section-title2 h2 {
+  color: #ffffff !important;
+}
+
+.home2-gradient-bg .section-title2 p {
+  color: #e0e0e0 !important;
+}
+
+/* Section tags - all variants */
+.home2-gradient-bg .eg-section-tag span,
+.home2-gradient-bg .eg-section-tag.two span {
+  color: #ffa500 !important;
+}
+
+/* About section - only text directly on gradient, not in cards */
+.home2-about-section.home2-gradient-bg .about-content .section-title2 h2,
+.home2-about-section.home2-gradient-bg .about-content .section-title2 p {
+  color: #ffffff !important;
+}
+
+/* Testimonial section - only text directly on gradient */
+.home2-testimonial-section.home2-gradient-bg .testimonial-content-wrapper .section-title2 h2,
+.home2-testimonial-section.home2-gradient-bg .testimonial-content-wrapper .section-title2 p {
+  color: #ffffff !important;
+}
+
+.home2-testimonial-section.home2-gradient-bg .review-wrap h6 {
+  color: #ffffff !important;
+}
+
+/* Banner6 section - text on gradient background */
+.banner6-section.home2-gradient-bg .banner6-content h2,
+.banner6-section.home2-gradient-bg .banner6-content p {
+  color: #ffffff !important;
+}
+
+.banner6-section.home2-gradient-bg input::placeholder {
+  color: #b0b0b0 !important;
+}
+
+.banner6-section.home2-gradient-bg input {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Banner5 section - text on gradient background */
+.banner5-section.home2-gradient-bg .banner5-content span,
+.banner5-section.home2-gradient-bg .banner5-content h3,
+.banner5-section.home2-gradient-bg .banner5-content a {
+  color: #ffffff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-timer h6,
+.banner5-section.home2-gradient-bg .countdown-timer li {
+  color: #ffffff !important;
+}
+
+/* Destination slider - navigation buttons and links on gradient */
+.destination-card2-slider-section.home2-gradient-bg .slider-btn span,
+.destination-card2-slider-section.home2-gradient-bg .secondary-btn2 {
+  color: #ffffff !important;
+}
+
+/* Tour package - navigation buttons and links on gradient */
+.tour-pack-section.home2-gradient-bg .slider-btn span,
+.tour-pack-section.home2-gradient-bg .secondary-btn2 {
+  color: #ffffff !important;
+}
+
+/* About section - counter numbers, labels, buttons, and review text on gradient (NOT in cards) */
+.home2-about-section.home2-gradient-bg .activities-counter .single-activity .number h5,
+.home2-about-section.home2-gradient-bg .activities-counter .single-activity .number span,
+.home2-about-section.home2-gradient-bg .activities-counter .single-activity .content p,
+.home2-about-section.home2-gradient-bg .content-bottom-area .primary-btn3,
+.home2-about-section.home2-gradient-bg .content-bottom-area .video-area h6,
+.home2-about-section.home2-gradient-bg .tripadvisor-review strong,
+.home2-about-section.home2-gradient-bg .tripadvisor-review p,
+.home2-about-section.home2-gradient-bg .tripadvisor-review a {
+  color: #ffffff !important;
+}
+
+/* Activities section - tab navigation items on gradient */
+.slider-and-tab-section.home2-gradient-bg .nav-link h6 {
+  color: #ffffff !important;
+}
+
+/* Activities section - tab content text (if directly on gradient) */
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap h2,
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap p {
+  color: #ffffff !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap ul li {
+  color: #e0e0e0 !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap .primary-btn3,
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap .video-area h6 {
+  color: #ffffff !important;
+}
+
+/* Testimonial section - rating spans */
+.home2-testimonial-section.home2-gradient-bg .review-wrap .rating-area span {
+  color: #ffffff !important;
+}
+
+/* Testimonial section - navigation buttons */
+.home2-testimonial-section.home2-gradient-bg .slider-btn span {
+  color: #ffffff !important;
+}
+
+/* Team section - navigation buttons */
+.teams-section.home2-gradient-bg .slider-btn span {
+  color: #ffffff !important;
+}
+
+/* Banner6 section - contact info */
+.banner6-section.home2-gradient-bg .single-contact .content span,
+.banner6-section.home2-gradient-bg .single-contact .content a {
+  color: #ffffff !important;
+}
+
+/* Blog section - only section title, cards have their own backgrounds */
+.home2-blog-section.home2-gradient-bg .section-title2 h2,
+.home2-blog-section.home2-gradient-bg .section-title2 p {
+  color: #ffffff !important;
+}
+
+/* WhyChoose section - only section title, cards have their own backgrounds */
+.feature-card-section.home2-gradient-bg .section-title2 h2,
+.feature-card-section.home2-gradient-bg .section-title2 p {
+  color: #ffffff !important;
+}
+
+/* Team section - only section title, cards have their own backgrounds */
+.teams-section.home2-gradient-bg .section-title2 h2,
+.teams-section.home2-gradient-bg .section-title2 p {
+  color: #ffffff !important;
+}
+
+/* Cards with light backgrounds - ensure dark text colors */
+/* Feature cards (style-2) - white background */
+.feature-card-section.home2-gradient-bg .feature-card.style-2 .feature-card-content h6,
+.feature-card-section.home2-gradient-bg .feature-card.style-2 .feature-card-content p {
+  color: var(--title-color) !important;
+}
+
+/* Blog cards - white background */
+.home2-blog-section.home2-gradient-bg .blog-card .blog-card-content h5,
+.home2-blog-section.home2-gradient-bg .blog-card .blog-card-content h5 a,
+.home2-blog-section.home2-gradient-bg .blog-card .blog-card-content-top ul li,
+.home2-blog-section.home2-gradient-bg .blog-card .blog-card-content-top ul li a,
+.home2-blog-section.home2-gradient-bg .blog-card .bottom-area span {
+  color: var(--title-color) !important;
+}
+
+.home2-blog-section.home2-gradient-bg .blog-card .bottom-area a {
+  color: var(--primary-color1) !important;
+}
+
+/* Package cards (package-card3) - white background */
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content h5,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content h5 a,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .rating-area span,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .feature-list li,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .price-area .title,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .price-area h6,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .price-area h6 sub,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .price-area h6 del,
+.tour-pack-section.home2-gradient-bg .package-card3 .package-card-content .price-area span {
+  color: var(--title-color) !important;
+}
+
+/* Testimonial cards - white background */
+.home2-testimonial-section.home2-gradient-bg .tesimonial-card .testimonial-content p,
+.home2-testimonial-section.home2-gradient-bg .tesimonial-card-wrapper .author-content h5,
+.home2-testimonial-section.home2-gradient-bg .tesimonial-card-wrapper .author-content span {
+  color: var(--title-color) !important;
+}
+
+/* ===== CONTRAST FIXES ===== */
+
+/* Fix banner5 promotional cards - change from white to dark background */
+.banner5-section.home2-gradient-bg .banner5-card {
+  background-image: url(../../public/assets/img/home2/banner5-card-bg.png), linear-gradient(180deg, rgba(15, 32, 39, 0.95) 0%, rgba(44, 83, 100, 0.95) 100%) !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-content h3 {
+  color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-content a {
+  color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer h6,
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul li {
+  color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul li span {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul svg {
+  fill: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Fix activities section navigation tabs */
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link.active {
+  background-color: var(--primary-color2) !important;
+  border-color: var(--primary-color2) !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link.active .icon svg {
+  fill: #fff !important;
+}
+
+/* Fix activities tab content feature list */
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content .tab-content-wrap ul li {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap ul li {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap ul li svg {
+  fill: var(--primary-color1) !important;
+  opacity: 1 !important;
+}
+
+/* CRITICAL FIX: Remove light background from tab area to show dark gradient */
+.slider-and-tab-section.home2-gradient-bg .tab-area {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+/* Fix About section facility cards text contrast */
+.home2-about-section.home2-gradient-bg .facility-card .content h6 {
+  color: #ffffff !important;
+}
+
+/* ===== REMOVE WHITE GAPS BETWEEN SECTIONS ===== */
+
+/* Apply dark gradient to entire page body */
+body {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+  min-height: 100vh;
+}
+
+/* Remove bottom margins from all sections to eliminate gaps */
+.home2-about-section,
+.slider-and-tab-section,
+.feature-card-section,
+.tour-pack-section,
+.banner5-section {
+  margin-bottom: 0 !important;
+  padding-bottom: 60px !important;
+}
+
+/* Make all flight search form labels white */
+.home2-banner-wrapper label,
+.home2-banner-wrapper .single-search-box label,
+.home2-banner-wrapper .search-box-single label {
+  color: #ffffff !important;
+}
+
+/* Make ALL input placeholders in hero section tabs light and visible */
+.home2-banner-wrapper input::placeholder,
+.home2-banner-wrapper .filter-area input::placeholder,
+.home2-banner-wrapper .single-search-box input::placeholder,
+.home2-banner-wrapper .searchbox-input input::placeholder,
+.filter-area input::placeholder,
+.single-search-box input::placeholder {
+  color: #f5f5f5 !important;
+  opacity: 1 !important;
+}
+
+/* Ensure input text is white */
+.home2-banner-wrapper input,
+.home2-banner-wrapper .filter-area input,
+.home2-banner-wrapper .single-search-box input {
+  color: #ffffff !important;
+}

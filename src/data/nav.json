@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "label": "Tour",
+        "link": "/#tour",
+        "icon": false
+    },
+    {
+        "id": "2",
+        "label": "Hotels",
+        "link": "/#hotels",
+        "icon": false
+    },
+    {
+        "id": "3",
+        "label": "Flights",
+        "link": "/#flights",
+        "icon": false
+    },
+    {
+        "id": "4",
+        "label": "Car rentals",
+        "link": "/#car-rentals",
+        "icon": false
+    }
+]

@@ -1,0 +1,64 @@
+/* Fix banner5 promotional cards - change from white to dark background */
+.banner5-section.home2-gradient-bg .banner5-card {
+    background-image: url(../img/home2/banner5-card-bg.png), linear-gradient(180deg, rgba(15, 32, 39, 0.95) 0%, rgba(44, 83, 100, 0.95) 100%) !important;
+}
+
+/* Ensure banner5 card text is visible with white/light colors */
+.banner5-section.home2-gradient-bg .banner5-card .banner5-content span {
+    color: var(--primary-color2) !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-content h3 {
+    color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-content a {
+    color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer h6 {
+    color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul li {
+    color: #fff !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul li span {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.banner5-section.home2-gradient-bg .banner5-card .banner5-timer .countdown-timer ul svg {
+    fill: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Fix activities section navigation tabs - better contrast */
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link.active {
+    background-color: var(--primary-color2) !important;
+    border-color: var(--primary-color2) !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link.active .icon svg {
+    fill: #fff !important;
+}
+
+.slider-and-tab-section.home2-gradient-bg .tab-area .tab-content-area .tab-sidebar .nav-pills .nav-item .nav-link.active h6 {
+    color: #fff !important;
+}
+
+/* Fix activities tab content - feature list items visibility */
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap ul li {
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+
+/* Ensure feature list SVG icons are visible */
+.slider-and-tab-section.home2-gradient-bg .tab-content-wrap ul li svg {
+    fill: var(--primary-color1) !important;
+    opacity: 1 !important;
+}

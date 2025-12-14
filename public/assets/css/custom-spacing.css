@@ -1,0 +1,42 @@
+/* Custom spacing adjustments to reduce gap between tabs and results */
+.home2-banner-area {
+    padding-bottom: 0px !important;
+    /* Aggressively remove bottom padding */
+    margin-bottom: 0px !important;
+    overflow: visible !important;
+    /* Allow calendar/dropdowns to overflow */
+    z-index: 20 !important;
+    /* Ensure banner is above results */
+    position: relative !important;
+}
+
+/* Ensure wrapper also allows overflow */
+.home2-banner-wrapper {
+    overflow: visible !important;
+}
+
+/* Ensure banner content wrap allows overflow */
+.home2-banner-content-wrap {
+    overflow: visible !important;
+}
+
+/* Bootstrap tab fixes */
+.tab-content,
+.tab-pane {
+    overflow: visible !important;
+}
+
+/* Force filter area to be on top */
+.filter-area {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Reduce top padding of the next section if needed */
+.flight-search-results {
+    margin-top: 20px !important;
+}
+
+.section-spacing {
+    padding-top: 30px !important;
+}
