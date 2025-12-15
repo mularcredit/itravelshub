@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for itravelshub on 2025-12-15T09:11:26Z
+# fly.toml app configuration file generated for itravelshub-s0k-ya on 2025-12-15T09:34:27Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'itravelshub'
-primary_region = 'iad'
+app = 'itravelshub-s0k-ya'
+primary_region = 'cdg'
 
 [build]
 
