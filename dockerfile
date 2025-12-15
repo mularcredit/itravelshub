@@ -1,55 +1,34 @@
-# syntax = docker/dockerfile:1
+FROM node:18-alpine
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=22.21.1
-FROM node:${NODE_VERSION}-slim AS base
+# Install Chromium for Puppeteer and build dependencies
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    bash \
+    python3 \
+    make \
+    g++
 
-LABEL fly_launch_runtime="Next.js/Prisma"
+# Set environment variables
+ENV NODE_ENV=production
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
-# Next.js/Prisma app lives here
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci
 
-
-# Throw-away build stage to reduce size of final image
-FROM base AS build
-
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp openssl pkg-config python-is-python3
-
-# Install node modules
-COPY package-lock.json package.json ./
-COPY prisma .
-RUN npm ci --include=dev
-
-# Generate Prisma Client
-RUN npx prisma generate
-
-# Copy application code
+# Copy app files
 COPY . .
 
-# Build application
+# Build Next.js application
 RUN npm run build
 
-# Remove development dependencies
-RUN npm prune --omit=dev
-
-
-# Final stage for app image
-FROM base
-
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y chromium chromium-sandbox openssl && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-# Copy built application
-COPY --from=build /app /app
-
-# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
-CMD [ "npm", "run", "start" ]
+CMD ["npm", "start"]
