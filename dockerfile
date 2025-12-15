@@ -1,42 +1,55 @@
-FROM node:18-alpine
+# syntax = docker/dockerfile:1
 
-# Install dependencies for Puppeteer and build tools
-RUN apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    bash \
-    git \
-    python3 \
-    make \
-    g++
+# Adjust NODE_VERSION as desired
+ARG NODE_VERSION=22.21.1
+FROM node:${NODE_VERSION}-slim AS base
 
-# Set Puppeteer env variables to use installed Chromium
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+LABEL fly_launch_runtime="Next.js/Prisma"
 
+# Next.js/Prisma app lives here
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-COPY prisma ./prisma/
+# Set production environment
+ENV NODE_ENV="production"
 
-# Install dependencies
-RUN npm ci --only=production
 
-# Copy app files
+# Throw-away build stage to reduce size of final image
+FROM base AS build
+
+# Install packages needed to build node modules
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential node-gyp openssl pkg-config python-is-python3
+
+# Install node modules
+COPY package-lock.json package.json ./
+COPY prisma .
+RUN npm ci --include=dev
+
+# Generate Prisma Client
+RUN npx prisma generate
+
+# Copy application code
 COPY . .
 
-# Build Next.js application
+# Build application
 RUN npm run build
 
-# Generate Prisma client if you have prisma schema
-RUN if [ -f "prisma/schema.prisma" ]; then npx prisma generate; fi
+# Remove development dependencies
+RUN npm prune --omit=dev
 
+
+# Final stage for app image
+FROM base
+
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y chromium chromium-sandbox openssl && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Copy built application
+COPY --from=build /app /app
+
+# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
+CMD [ "npm", "run", "start" ]
