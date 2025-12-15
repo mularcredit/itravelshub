@@ -7,6 +7,9 @@ const nextConfig = {
     experimental: {
         serverComponentsExternalPackages: ['puppeteer', 'puppeteer-extra', 'puppeteer-extra-plugin-stealth'],
     },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
 }
 
 module.exports = nextConfig
