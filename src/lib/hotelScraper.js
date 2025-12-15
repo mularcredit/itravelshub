@@ -4,14 +4,20 @@ const puppeteer = require('puppeteer');
  * Get Puppeteer configuration based on environment
  */
 function getPuppeteerConfig() {
-  const isRender = process.env.NODE_ENV === 'production';
+  const isRender = process.env.RENDER || process.env.NODE_ENV === 'production';
   
   if (isRender) {
-    console.log('🚀 Render environment - using system Chrome');
+    console.log('🚀 Render environment - using Chromium');
     return {
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-      executablePath: '/usr/bin/google-chrome-stable'
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--disable-gpu'
+      ],
+      executablePath: '/usr/bin/chromium-browser'
     };
   } else {
     console.log('💻 Local environment - using default Puppeteer');
