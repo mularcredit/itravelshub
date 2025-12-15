@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for itravelshub on 2025-12-15T08:57:06Z
+# fly.toml app configuration file generated for itravelshub on 2025-12-15T09:11:26Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'itravelshub'
-primary_region = 'sin'
+primary_region = 'iad'
 
 [build]
 
