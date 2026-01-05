@@ -8,6 +8,7 @@ import Header2 from "@/components/header/Header2";
 import Home2VideoSection from "@/components/videoSection/Home2VideoSection";
 import Home2WhyChoose from "@/components/whyChoose/Home2WhyChoose";
 import DigitalPaymentSection from "@/components/features/DigitalPaymentSection";
+import TravelDictionary from "@/components/features/TravelDictionary";
 import PartnersSection from "@/components/partners/PartnersSection";
 import React from "react";
 
@@ -25,6 +26,7 @@ const page = () => {
     <>
       <Header2 />
       <Home2Banner />
+      <TravelDictionary />
       <DigitalPaymentSection />
 
       <Home2About />

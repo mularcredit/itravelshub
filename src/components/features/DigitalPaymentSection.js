@@ -1,111 +1,347 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { CreditCard, TrendingUp, CheckCircle2, ShieldCheck, Wallet } from "lucide-react";
+'use client';
+
+import React from 'react';
+import {
+  ShieldCheck, Zap, Globe, CreditCard, ArrowUpRight,
+  Wallet, TrendingUp, DollarSign, Gem, Star
+} from 'lucide-react';
 
 const DigitalPaymentSection = () => {
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364]">
-      {/* Background Decorative Blurs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3" />
+    <section className="concierge-payment-section">
+      <div className="payment-animated-bg"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="payment-container">
+        <div className="row align-items-center">
+          {/* Left: Premium Content */}
+          <div className="col-lg-6">
+            <div className="payment-content-stack">
+              <span className="premium-tag">Concierge Payments</span>
+              <h2 className="payment-title">
+                Secure Your <span className="serif-italic">Legacy</span>
+                <br />With One <span className="underline-emerald">Touch</span>
+              </h2>
+              <p className="payment-desc">
+                Experience a world of frictionless travel finance. From automated
+                multi-currency settling to bank-level encrypted vaulting,
+                we ensure your journey is as secure as it is seamless.
+              </p>
 
-          {/* Left Content */}
-          <div className="text-white space-y-8 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 w-fit">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium tracking-wide text-emerald-100">100% Secure Transaction</span>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-rubik">
-              Book Your Dream <br />
-              Vacation in <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 relative">
-                Seconds
-                <svg className="absolute w-full h-3 -bottom-1 left-0 text-emerald-500/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                </svg>
-              </span>
-            </h1>
-
-            <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
-              Experience lightning-fast booking with our streamlined process.
-              We accept all major payment methods including Visa, Mastercard, and digital wallets.
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-4">
-              {['Visa', 'Mastercard', 'PayPal', 'Apple Pay'].map((method) => (
-                <div key={method} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 cursor-default">
-                  <span className="text-gray-300 font-medium">{method}</span>
+              <div className="benefit-grid">
+                <div className="benefit-item">
+                  <div className="benefit-icon emerald"><ShieldCheck size={18} /></div>
+                  <div className="benefit-text">
+                    <h6>Elite Security</h6>
+                    <span>Bio-encrypted transactions.</span>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4 text-sm text-gray-400 pt-4">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>No hidden fees</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Instant confirmation</span>
+                <div className="benefit-item">
+                  <div className="benefit-icon sky"><Zap size={18} /></div>
+                  <div className="benefit-text">
+                    <h6>Instant Settlement</h6>
+                    <span>Real-time global bookings.</span>
+                  </div>
+                </div>
+                <div className="benefit-item">
+                  <div className="benefit-icon violet"><Globe size={18} /></div>
+                  <div className="benefit-text">
+                    <h6>Global Multi-Currency</h6>
+                    <span>Pay in any local currency.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Image Composition */}
-          <div className="relative mt-12 lg:mt-0">
-            {/* Main Image Container */}
-            <div className="relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-emerald-900/20 group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-              <img
-                src="/assets/img/home2/portrait-cheerful-african-girl-pink-casual-clothes-holding-credit-bank-card-isolated-blue-turquoise-wall-background-studio-people-sincere-emotions-lifestyle-concept-mock-up-copy-space.png"
-                alt="Secure Payment Experience"
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
-              />
-
-              {/* Floating Payment Success Card */}
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <div className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-emerald-500/20 p-2.5 rounded-full">
-                        <Wallet className="w-5 h-5 text-emerald-400" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-emerald-200">Total Balance</div>
-                        <div className="text-lg font-bold text-white">$24,890.00</div>
-                      </div>
-                    </div>
-                    <div className="bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-md">
-                      +2.4%
-                    </div>
+          {/* Right: Concierge Wallet Dashboard */}
+          <div className="col-lg-6">
+            <div className="wallet-dashboard-wrapper">
+              {/* Main Titanium Card */}
+              <div className="titanium-card">
+                <div className="card-top">
+                  <div className="card-logo">
+                    <Gem size={20} className="gem-icon" />
+                    <span>ITRAVELS<span className="serif-italic">HUB</span></span>
                   </div>
-                  <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-400 w-3/4 animate-pulse"></div>
+                  <div className="card-chip"></div>
+                </div>
+                <div className="card-number">•••• •••• •••• 8888</div>
+                <div className="card-bottom">
+                  <div className="card-holder">
+                    <span className="label">PREMIUM HOLDER</span>
+                    <span className="val">VALUED CLIENT</span>
+                  </div>
+                  <div className="card-exp">
+                    <span className="label">EXPIRES</span>
+                    <span className="val">12/30</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Balance Stats */}
+              <div className="stat-card balance-stat floating-1">
+                <div className="stat-icon emerald"><Wallet size={16} /></div>
+                <div className="stat-info">
+                  <span className="stat-label">Total Balance</span>
+                  <span className="stat-val">$142,500.00</span>
+                </div>
+                <TrendingUp size={14} className="trend-arrow" />
+              </div>
+
+              {/* Recent Transactions List */}
+              <div className="stat-card trans-stat floating-2">
+                <h6 className="trans-header">Registry Activity</h6>
+                <div className="trans-list">
+                  <div className="trans-item">
+                    <div className="trans-icon"><Star size={12} /></div>
+                    <div className="trans-details">
+                      <span>Presidential Stay</span>
+                      <small>Settled via Vault</small>
+                    </div>
+                    <span className="trans-price">-$12,400</span>
+                  </div>
+                  <div className="trans-item">
+                    <div className="trans-icon"><ArrowUpRight size={12} /></div>
+                    <div className="trans-details">
+                      <span>Private Charter</span>
+                      <small>Verified Elite</small>
+                    </div>
+                    <span className="trans-price">-$45,000</span>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Decorative Floating Elements */}
-            <div className="absolute -top-10 -right-10 z-0 bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-2xl rotate-6 animate-float hidden md:block">
-              <CreditCard className="w-8 h-8 text-cyan-400 mb-2" />
-              <div className="h-2 w-12 bg-white/20 rounded-full mb-1"></div>
-              <div className="h-2 w-8 bg-white/20 rounded-full"></div>
-            </div>
-
-            <div className="absolute top-1/2 -left-12 z-20 bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-2xl -rotate-6 animate-float-delayed hidden md:block">
-              <TrendingUp className="w-8 h-8 text-emerald-400 mb-2" />
-              <div className="h-2 w-12 bg-white/20 rounded-full mb-1"></div>
-              <div className="h-2 w-8 bg-white/20 rounded-full"></div>
-            </div>
-
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+                .concierge-payment-section {
+                    background-color: #05070a;
+                    padding: 120px 0;
+                    position: relative;
+                    overflow: hidden;
+                    color: white;
+                }
+
+                .payment-animated-bg {
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.04) 0%, transparent 40%),
+                                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
+                    z-index: 1;
+                }
+
+                .payment-container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                    position: relative;
+                    z-index: 10;
+                }
+
+                .premium-tag {
+                    display: inline-block;
+                    text-transform: uppercase;
+                    letter-spacing: 0.4em;
+                    font-size: 10px;
+                    font-weight: 900;
+                    color: #10b981;
+                    margin-bottom: 20px;
+                }
+
+                .payment-title {
+                    font-size: 52px;
+                    font-weight: 800;
+                    line-height: 1.1;
+                    margin-bottom: 30px;
+                    letter-spacing: -0.02em;
+                    color: white;
+                }
+
+                .serif-italic {
+                    font-family: serif;
+                    font-style: italic;
+                    font-weight: 400;
+                }
+
+                .underline-emerald {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .underline-emerald::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 8px;
+                    left: 0;
+                    width: 100%;
+                    height: 8px;
+                    background: rgba(16, 185, 129, 0.2);
+                    z-index: -1;
+                }
+
+                .payment-desc {
+                    font-size: 17px;
+                    line-height: 1.8;
+                    color: rgba(255, 255, 255, 0.5);
+                    max-width: 500px;
+                    margin-bottom: 40px;
+                }
+
+                .benefit-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 24px;
+                }
+
+                .benefit-item {
+                    display: flex;
+                    gap: 16px;
+                    align-items: center;
+                }
+
+                .benefit-icon {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 12px;
+                    background: rgba(255, 255, 255, 0.03);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                .benefit-icon.emerald { color: #10b981; }
+                .benefit-icon.sky { color: #0ea5e9; }
+                .benefit-icon.violet { color: #8b5cf6; }
+
+                .benefit-text h6 { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; }
+                .benefit-text span { font-size: 12px; color: rgba(255, 255, 255, 0.4); }
+
+                /* Wallet Dashboard Styles */
+                .wallet-dashboard-wrapper {
+                    position: relative;
+                    height: 500px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .titanium-card {
+                    width: 380px;
+                    height: 230px;
+                    background: linear-gradient(135deg, #111 0%, #222 100%);
+                    border-radius: 20px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    padding: 24px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+                    position: relative;
+                    z-index: 5;
+                    overflow: hidden;
+                }
+
+                .titanium-card::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.05) 50%, transparent 60%);
+                    animation: cardGlow 6s infinite;
+                }
+
+                @keyframes cardGlow {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                }
+
+                .card-top { display: flex; justify-content: space-between; align-items: center; }
+                .card-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 12px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.8); }
+                .gem-icon { color: #10b981; }
+                .card-chip { width: 40px; height: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 6px; }
+
+                .card-number { font-size: 20px; letter-spacing: 4px; font-weight: 500; font-family: monospace; color: white; margin-top: 40px; }
+
+                .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+                .card-holder, .card-exp { display: flex; flex-direction: column; }
+                .label { font-size: 8px; color: rgba(255, 255, 255, 0.3); letter-spacing: 1px; margin-bottom: 2px; }
+                .val { font-size: 12px; font-weight: 700; color: white; }
+
+                /* Floating Stats */
+                .stat-card {
+                    position: absolute;
+                    background: rgba(15, 23, 42, 0.8);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 16px;
+                    padding: 16px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                    z-index: 10;
+                }
+
+                .balance-stat {
+                    top: 60px;
+                    right: 40px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    min-width: 180px;
+                    animation: float 5s ease-in-out infinite;
+                }
+
+                .trans-stat {
+                    bottom: 40px;
+                    left: 20px;
+                    min-width: 240px;
+                    animation: float 7s ease-in-out infinite;
+                }
+
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+
+                .stat-icon {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: rgba(255, 255, 255, 0.04);
+                }
+
+                .emerald { color: #10b981; }
+                .stat-info { display: flex; flex-direction: column; }
+                .stat-label { font-size: 10px; color: rgba(255, 255, 255, 0.4); }
+                .stat-val { font-size: 16px; font-weight: 800; }
+                .trend-arrow { color: #10b981; margin-left: auto; }
+
+                .trans-header { font-size: 12px; font-weight: 700; margin: 0 0 12px 0; color: rgba(255, 255, 255, 0.6); }
+                .trans-list { display: flex; flex-direction: column; gap: 12px; }
+                .trans-item { display: flex; align-items: center; gap: 12px; }
+                .trans-icon { width: 24px; height: 24px; border-radius: 6px; background: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.4); }
+                .trans-details { display: flex; flex-direction: column; flex: 1; }
+                .trans-details span { font-size: 11px; font-weight: 700; }
+                .trans-details small { font-size: 9px; color: rgba(255, 255, 255, 0.3); }
+                .trans-price { font-size: 11px; font-weight: 700; color: #10b981; }
+
+                @media (max-width: 992px) {
+                    .payment-title { font-size: 38px; text-align: center; }
+                    .payment-desc { text-align: center; margin-inline: auto; }
+                    .benefit-grid { justify-content: center; }
+                    .wallet-dashboard-wrapper { height: auto; margin-top: 60px; }
+                    .titanium-card { width: 100%; max-width: 380px; }
+                    .stat-card { position: relative; top: auto; right: auto; left: auto; bottom: auto; margin-top: 20px; animation: none; width: 100%; max-width: 380px; }
+                }
+
+                @media (max-width: 600px) {
+                    .payment-title { font-size: 32px; }
+                    .benefit-grid { grid-template-columns: 1fr; }
+                }
+            `}</style>
     </section>
   );
 };

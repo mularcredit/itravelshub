@@ -17,7 +17,10 @@ export default function HotelCard({ hotel, onSelect }) {
 
     return (
         <div
-            onClick={() => onSelect(hotel)}
+            onClick={() => {
+                console.log('HotelCard: Outer card clicked', hotel.name);
+                onSelect(hotel);
+            }}
             className="card h-100 border-0 shadow-sm"
             style={{ cursor: 'pointer', transition: 'transform 0.3s, box-shadow 0.3s' }}
             onMouseEnter={(e) => {
@@ -87,15 +90,16 @@ export default function HotelCard({ hotel, onSelect }) {
                         )}
                     </div>
 
-                    <a
-                        href={`https://duckduckgo.com/?q=!ducky+${encodeURIComponent(hotel.name + " official website")}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
+                    <button
+                        onClick={(e) => {
+                            console.log('HotelCard: Book button clicked', hotel.name);
+                            e.stopPropagation();
+                            onSelect(hotel);
+                        }}
                         className="btn btn-success btn-sm"
                     >
-                        View Deal
-                    </a>
+                        Book Now
+                    </button>
                 </div>
             </div>
         </div>

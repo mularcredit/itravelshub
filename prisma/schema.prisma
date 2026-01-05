@@ -1,0 +1,93 @@
+// Prisma schema for TripRex booking system
+// Database: Supabase (PostgreSQL)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Booking model to store all travel bookings
+model Booking {
+  id              String   @id @default(cuid())
+  bookingType     String   // 'flight' or 'hotel'
+  status          String   @default("pending") // 'pending', 'confirmed', 'cancelled', 'failed'
+  
+  // Provider details
+  provider        String   // 'amadeus', 'duffel', etc.
+  providerRef     String?  // Provider's booking reference number
+  offerId         String   // Original offer ID from search
+  
+  // Financial
+  totalAmount     Decimal  @db.Decimal(10, 2)
+  currency        String   @default("USD")
+  paymentStatus   String   @default("pending") // 'pending', 'paid', 'refunded', 'failed'
+  stripePaymentId String?  // Stripe payment intent ID
+  
+  // Customer details
+  customerEmail   String
+  customerName    String
+  customerPhone   String?
+  
+  // Booking data (JSON stored details)
+  bookingDetails  Json     // Full booking information (itinerary, passengers, rooms, etc.)
+  searchParams    Json?    // Original search parameters
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([customerEmail])
+  @@index([providerRef])
+  @@index([status])
+}
+
+// Passenger model for flight bookings
+model Passenger {
+  id          String   @id @default(cuid())
+  bookingId   String
+  
+  // Personal details
+  title       String   // Mr, Mrs, Ms, Dr
+  firstName   String
+  lastName    String
+  dateOfBirth DateTime
+  gender      String?  // M, F, Other
+  
+  // Contact (for primary passenger)
+  email       String?
+  phone       String?
+  
+  // Travel document
+  passportNumber String?
+  nationality    String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([bookingId])
+}
+
+// Guest model for hotel bookings
+model Guest {
+  id          String   @id @default(cuid())
+  bookingId   String
+  
+  // Personal details
+  title       String   // Mr, Mrs, Ms
+  firstName   String
+  lastName    String
+  
+  // Contact (for primary guest)
+  email       String?
+  phone       String?
+  
+  // Special requests
+  specialRequests String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([bookingId])
+}

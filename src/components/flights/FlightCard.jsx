@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FlightCard = ({ flight }) => {
+const FlightCard = ({ flight, onBook }) => {
     return (
         <div className="flight-card bg-white rounded-4 shadow-sm p-4 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-3" style={{ border: '1px solid #eee' }}>
             {/* Airline Info */}
@@ -35,15 +35,12 @@ const FlightCard = ({ flight }) => {
             {/* Price & Action */}
             <div className="text-end">
                 <h3 className="text-success fw-bold mb-2">{flight.price}</h3>
-                <a
-                    href={flight.bookingLink || '#'}
-                    target={flight.bookingLink ? "_blank" : "_self"}
-                    rel="noopener noreferrer"
+                <button
+                    onClick={() => onBook && onBook(flight)}
                     className="btn btn-success rounded-pill px-4"
-                    onClick={(e) => !flight.bookingLink && e.preventDefault()}
                 >
-                    {flight.bookingLink ? 'Book Now' : 'Select'}
-                </a>
+                    Book Now
+                </button>
             </div>
         </div>
     );

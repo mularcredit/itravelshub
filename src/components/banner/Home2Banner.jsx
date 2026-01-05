@@ -377,10 +377,10 @@ const Home2Banner = () => {
                     </div>
                     <div className={`tab-pane fade ${activeTab === 'hotels' ? 'show active' : ''}`} id="hotels" role="tabpanel">
                       <CurrencyProvider>
-                        {/* Currency Selector - Top Right */}
-                        <div style={{ position: 'absolute', top: '-60px', right: '20px', zIndex: 1000 }}>
+                        {/* Currency Selector - Hidden */}
+                        {/* <div style={{ position: 'absolute', top: '-60px', right: '20px', zIndex: 1000 }}>
                           <CurrencySelector />
-                        </div>
+                        </div> */}
 
                         <form onSubmit={async (e) => {
                           e.preventDefault();
@@ -469,31 +469,75 @@ const Home2Banner = () => {
                           color: #ffffff !important;
                           font-weight: 500;
                         }
+
+                        /* Trip Type Selectors - Responsive Styles */
+                        .trip-type-selectors {
+                          display: flex;
+                          gap: 12px;
+                          margin-bottom: 1.5rem;
+                          justify-content: center;
+                          flex-wrap: wrap;
+                        }
+
+                        .trip-type-btn {
+                          width: 110px;
+                          padding: 6px 12px;
+                          border-radius: 50px;
+                          border: 1px solid rgba(255,255,255,0.2);
+                          background: rgba(255,255,255,0.05);
+                          color: #ffffff;
+                          cursor: pointer;
+                          transition: all 0.3s ease;
+                          text-align: center;
+                          font-weight: 500;
+                          font-size: 11px;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          gap: 4px;
+                          white-space: nowrap;
+                        }
+
+                        .trip-type-btn.active {
+                          border: 2px solid #16B86B;
+                          background: rgba(22, 184, 107, 0.2);
+                          font-weight: 600;
+                          box-shadow: 0 4px 15px rgba(22, 184, 107, 0.2);
+                        }
+
+                        /* Tablet and above */
+                        @media (min-width: 768px) {
+                          .trip-type-selectors {
+                            gap: 16px;
+                          }
+
+                          .trip-type-btn {
+                            width: 145px;
+                            padding: 8px 15px;
+                            font-size: 13px;
+                            gap: 6px;
+                          }
+                        }
+
+                        /* Small mobile optimization */
+                        @media (max-width: 375px) {
+                          .trip-type-selectors {
+                            gap: 8px;
+                          }
+
+                          .trip-type-btn {
+                            width: 100px;
+                            padding: 5px 10px;
+                            font-size: 10px;
+                          }
+                        }
                       `}</style>
 
-                      {/* Trip Type Selectors - Centered and Fixed Width */}
-                      <div className="d-flex gap-3 mb-4 justify-content-center">
+                      {/* Trip Type Selectors - Responsive */}
+                      <div className="trip-type-selectors">
                         <div
                           onClick={() => setTripType('oneway')}
-                          style={{
-                            width: '145px',
-                            padding: '8px 15px',
-                            borderRadius: '50px',
-                            border: tripType === 'oneway' ? '2px solid #16B86B' : '1px solid rgba(255,255,255,0.2)',
-                            background: tripType === 'oneway' ? 'rgba(22, 184, 107, 0.2)' : 'rgba(255,255,255,0.05)',
-                            color: '#ffffff',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s ease',
-                            textAlign: 'center',
-                            fontWeight: tripType === 'oneway' ? '600' : '500',
-                            fontSize: '13px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '6px',
-                            whiteSpace: 'nowrap',
-                            boxShadow: tripType === 'oneway' ? '0 4px 15px rgba(22, 184, 107, 0.2)' : 'none'
-                          }}
+                          className={`trip-type-btn ${tripType === 'oneway' ? 'active' : ''}`}
                           onMouseEnter={(e) => {
                             if (tripType !== 'oneway') {
                               e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
@@ -522,25 +566,7 @@ const Home2Banner = () => {
                         </div>
                         <div
                           onClick={() => setTripType('roundtrip')}
-                          style={{
-                            width: '145px',
-                            padding: '8px 15px',
-                            borderRadius: '50px',
-                            border: tripType === 'roundtrip' ? '2px solid #16B86B' : '1px solid rgba(255,255,255,0.2)',
-                            background: tripType === 'roundtrip' ? 'rgba(22, 184, 107, 0.2)' : 'rgba(255,255,255,0.05)',
-                            color: '#ffffff',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s ease',
-                            textAlign: 'center',
-                            fontWeight: tripType === 'roundtrip' ? '600' : '500',
-                            fontSize: '13px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '8px',
-                            whiteSpace: 'nowrap',
-                            boxShadow: tripType === 'roundtrip' ? '0 4px 15px rgba(22, 184, 107, 0.2)' : 'none'
-                          }}
+                          className={`trip-type-btn ${tripType === 'roundtrip' ? 'active' : ''}`}
                           onMouseEnter={(e) => {
                             if (tripType !== 'roundtrip') {
                               e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
@@ -960,17 +986,7 @@ const Home2Banner = () => {
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{
-                backgroundColor: '#1a1a1a',
-                borderRadius: '24px',
-                padding: '32px',
-                width: '90%',
-                maxWidth: '400px',
-                border: '1px solid #333',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                textAlign: 'center',
-                animation: 'fadeIn 0.2s ease-out'
-              }}>
+              <div className="tab-switch-modal">
                 <div style={{
                   width: '64px',
                   height: '64px',
@@ -1042,6 +1058,25 @@ const Home2Banner = () => {
                 </div>
               </div>
               <style jsx>{`
+                .tab-switch-modal {
+                  background-color: #1a1a1a;
+                  border-radius: 20px;
+                  padding: 20px;
+                  width: 90%;
+                  max-width: 400px;
+                  border: 1px solid #333;
+                  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                  text-align: center;
+                  animation: fadeIn 0.2s ease-out;
+                }
+
+                @media (min-width: 768px) {
+                  .tab-switch-modal {
+                    border-radius: 24px;
+                    padding: 32px;
+                  }
+                }
+
                 @keyframes fadeIn {
                   from { opacity: 0; transform: scale(0.95); }
                   to { opacity: 1; transform: scale(1); }
